@@ -31,7 +31,7 @@
 				<li class="nav-item active"><a class="nav-link" href="#">Home
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="addticket">Add
+				<li class="nav-item active"><a class="nav-link" href="addticket">Add
 						Ticket</a></li>
 			</ul>
 
@@ -44,7 +44,7 @@
 	<div th:if=${session.msg}>
 		<div class="alert alert-success" role="alert" th:text="${session.msg}">
 		</div>
-		<th:block th:text="${# session.removeAttribute('msg')}"></th:block>
+		<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
 	</div>
 	<div class="container p-5">
 		<table class="table">
@@ -62,10 +62,10 @@
 					<th th:text="${t.id}">1</th>
                     <td th:text="${t.tickettitle}">
 					</td>
-					<td th:text="${t.ticketdescription}"></td>
+					<td th:text="${t.ticketdesc}"></td>
 					<td th:text="${t.ticketdate}"></td>
 					<td><a class="btn btn-sm btn-primary" th:href="@{/editticket/{id}(id=${t.id})}">Edit</a> 
-						<a class="btn btn-sm btn-dangery" th:href="@{/deleteticket/{id}(id=${t.id})}">Delete</a></td>
+						<a class="btn btn-sm btn-danger" th:href="@{/deleteticket/{id}(id=${t.id})}">Delete</a></td>
 				</tr>
 
 			</tbody>
