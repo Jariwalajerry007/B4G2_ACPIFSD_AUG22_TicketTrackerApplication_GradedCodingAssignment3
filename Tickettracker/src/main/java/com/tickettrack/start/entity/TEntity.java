@@ -8,22 +8,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="ticket")
+@Table(name = "ticket")
 public class TEntity {
 
 	@Id
 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@Column(name = "ticket_title")
 	private String tickettitle;
-	
+
 	@Column(name = "ticket_desc")
 	private String ticketdesc;
-	
-	@Column(name="ticket_createdOn")
+
+	@Column(name = "ticket_createdOn")
 	private String ticketdate;
+	private String ticketcontent;
 
 	public TEntity(Long id, String tickettitle, String ticketdesc, String ticketdate) {
 		super();
@@ -31,6 +32,7 @@ public class TEntity {
 		this.tickettitle = tickettitle;
 		this.ticketdesc = ticketdesc;
 		this.ticketdate = ticketdate;
+		this.ticketcontent=ticketcontent;
 	}
 
 	public TEntity() {
@@ -70,10 +72,19 @@ public class TEntity {
 		this.ticketdate = ticketdate;
 	}
 
+	public String getTicketcontent() {
+		return ticketcontent;
+	}
+
+	public void setTicketcontent(String ticketcontent) {
+		this.ticketcontent = ticketcontent;
+	}
+
 	@Override
 	public String toString() {
 		return "TEntity [id=" + id + ", tickettitle=" + tickettitle + ", ticketdesc=" + ticketdesc + ", ticketdate="
-				+ ticketdate + "]";
+				+ ticketdate + ", ticketcontent=" + ticketcontent + "]";
 	}
-}
+
 	
+}

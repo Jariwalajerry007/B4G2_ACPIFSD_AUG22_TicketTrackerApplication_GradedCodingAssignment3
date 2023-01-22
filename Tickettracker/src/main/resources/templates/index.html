@@ -12,13 +12,13 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<title>Ticket tracker</title>
+<title>Ticket Tracker Application</title>
 </head>
 <body>
 	<!-- Navbar Start -->
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Ticket tracker</a>
+		<a class="navbar-brand" href="#">Ticket Tracker Application</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -28,11 +28,11 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">Home
+				<li class="nav-item active"><a class="nav-link" href="#">Tickets
 						<span class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item active"><a class="nav-link" href="addticket">Add
-						Ticket</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="addticket">New Ticket</a></li>
 			</ul>
 
 		</div>
@@ -47,6 +47,15 @@
 		<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
 	</div>
 	<div class="container p-5">
+		<div class="row">
+			<h1>List of Tickets</h1>
+		</div>
+		<form th:action="@{/}">
+			Filter: <input type="text" name="keyword" id="keyword" size="50"
+				th:value="${keyword}" required /> &nbsp; <input type="submit"
+				value="Search" /> &nbsp; <input type="button" value="Clear"
+				id="btnClear" onclick="clearSearch()" />
+		</form>
 		<table class="table">
 			<thead class="bg-primary text-white">
 				<tr>
@@ -60,12 +69,15 @@
 			<tbody>
 				<tr th:each="t : ${ticket}">
 					<th th:text="${t.id}">1</th>
-                    <td th:text="${t.tickettitle}">
-					</td>
+					<td th:text="${t.tickettitle}"></td>
 					<td th:text="${t.ticketdesc}"></td>
 					<td th:text="${t.ticketdate}"></td>
-					<td><a class="btn btn-sm btn-primary" th:href="@{/editticket/{id}(id=${t.id})}">Edit</a> 
-						<a class="btn btn-sm btn-danger" th:href="@{/deleteticket/{id}(id=${t.id})}">Delete</a></td>
+					<td><a class="btn btn-sm btn-primary"
+						th:href="@{/editticket/{id}(id=${t.id})}">Edit</a> <a
+						class="btn btn-sm btn-danger"
+						th:href="@{/deleteticket/{id}(id=${t.id})}">Delete</a> <a
+						class="btn btn-sm btn-info"
+						th:href="@{/viewticket/{id}(id=${t.id})}">View</a></td>
 				</tr>
 
 			</tbody>
@@ -73,7 +85,9 @@
 
 
 	</div>
-
+	<script type="text/javascript">function clearSearch() {
+    window.location = "[[@{/}]]";
+}</script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

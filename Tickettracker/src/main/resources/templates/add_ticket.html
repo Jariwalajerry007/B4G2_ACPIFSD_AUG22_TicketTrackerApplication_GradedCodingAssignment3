@@ -5,6 +5,8 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+	
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
@@ -12,13 +14,13 @@
 	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	crossorigin="anonymous">
 
-<title>Ticket tracker</title>
+<title>Ticket Tracker Application</title>
 </head>
 <body>
 	<!-- Navbar Start -->
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<a class="navbar-brand" href="#">Ticket tracker</a>
+		<a class="navbar-brand" href="#">Ticket Tracker Application</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -28,10 +30,10 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="/">Home
-						<span class="sr-only">(current)</span>
+				<li class="nav-item active"><a class="nav-link" href="/">Tickets<span
+						class="sr-only">(current)</span>
 				</a></li>
-				<li class="nav-item active"><a class="nav-link" href="">Add
+				<li class="nav-item active"><a class="nav-link" href="">New
 						Ticket</a></li>
 			</ul>
 
@@ -47,21 +49,28 @@
 			<div class="col-md-6 offset-md-3">
 				<div class="card">
 					<div class="card-body">
-						<h4 class="text-centre text-primary">Add New Ticket</h4>
+						<h4 class="text-centre text-primary">Create Ticket</h4>
 
 						<form th:action="@{/register}" method="post">
 							<div class="form-group">
-								<label>Ticket Title</label><input type="text"
-									class="form-control" name="tickettitle">
+								<label>Title</label><input type="text" class="form-control"
+									name="tickettitle">
 							</div>
 							<div class="form-group">
-								<label>Ticket Description</label><input type="text"
+								<label>Description</label><input type="text"
 									class="form-control" name="ticketdesc">
 							</div>
 							<div class="form-group">
-								<label>Ticket Created On</label><input type="text"
-									class="form-control" name="ticketdate">
+								<label>Created On</label><input type="text" class="form-control"
+									name="ticketdate">
 							</div>
+							<div class="form-group">
+								
+								<label>Content</label> 
+							<textarea id="editor" type="text" class="form-control"
+									name="ticketcontent"></textarea>
+							</div>
+
 							<button class="btn btn-primary btn-block">Submit</button>
 
 						</form>
@@ -82,7 +91,18 @@
 		</div>
 
 	</main>
-
+	<script
+		src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js"
+		referrerpolicy="origin"></script>
+	<script>
+  tinymce.init({
+    selector: 'textarea#editor',
+    skin: 'bootstrap',
+    plugins: 'lists, link, image, media',
+    toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist backcolor | link image media | removeformat help',
+    menubar: false,
+  });
+</script>
 
 
 	<!-- Optional JavaScript -->
